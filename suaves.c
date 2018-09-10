@@ -4,7 +4,6 @@
 #include <errno.h>
 #include <math.h>
 #include <sys/time.h>
-#include <unistd.h>
 
 #define TRUE 1
 #define FALSE 0
