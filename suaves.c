@@ -1,50 +1,11 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include <malloc.h>
 #include <errno.h>
-#include <math.h>
+#include "modulo.h"
 #include <sys/time.h>
-
-#define TRUE 1
-#define FALSE 0
-#define TAM_LISTA_INIT 150
-#define ERR_USO -1
-#define ERR_LIST_PRIM_OVERFLOW -2
-#define ERR_ERANGE -3
 
 void uso(char *prog)
 {
   printf("%s <N>\n", prog);
-}
-
-unsigned int lista_baleira(unsigned long long int *lista)
-{
-  return ((!lista)||!(lista[0]));
-}
-
-unsigned int esta_en_lista_fact(unsigned long long int n, unsigned long long int *lista_fact)
-{
-  if (lista_baleira(lista_fact)) return FALSE;
-  for (unsigned int i=0;lista_fact[i]&&(i<TAM_LISTA_INIT);i++)
-  {
-    if (lista_fact[i]==n) return TRUE;
-  }
-  return FALSE;
-}
-
-unsigned int es_primo(unsigned long long int n, unsigned long long int *lista_fact)
-{
-  unsigned long long int i = 0, lim_criba = 0;
-  if (esta_en_lista_fact(n, lista_fact)) return TRUE;
-  lim_criba = (unsigned long long int)sqrtl(n * 1.0);
-  for (i = 2; i<lim_criba;i++)
-  {
-    if (!(n%i))
-    {
-      return FALSE;
-    }
-  }
-  return TRUE;
 }
 
 void limpar_lista_fact(unsigned long long int *lista)
@@ -75,6 +36,7 @@ void fact(unsigned long long int n, unsigned long long int *lista_fact)
   do
   {
     if ((!(j%i))&&(es_primo(i, lista_fact))) //j divisor de i && i primo //MUI EFICIENTE
+    //if ((!(j%i))&&(es_primo_fermat(i))) //j divisor de i && i primo //MUI EFICIENTE
     {
       j /= i;
       lista_fact[tam_act_lista++]=i;
