@@ -73,8 +73,9 @@ unsigned int p_suave(unsigned long long int *lista_fact)
 
 unsigned long long obter_num(char *num_str)
 {
-  unsigned long long n = 0;
-  n = (unsigned long long)atoll(num_str);
+  unsigned long long int n = 0;
+  //n = (unsigned long long int)atoll(num_str);
+  n = (unsigned long long int)strtoull(num_str, NULL, 10);
   if (errno == ERANGE)
   {
     printf("%s non válido: fóra de rango.\n", num_str);
@@ -112,7 +113,6 @@ int main(int argc, char *argv[])
   printf("%llu é %llu-suave.\n", n, p);
   printf("Tempo: %lli ms\n", t_tot_msec);
   free(lista_fact);
-
   return 0;
 }
 
